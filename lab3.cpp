@@ -15,7 +15,7 @@ int expVal = 0;
 void greeting();
 void slice(int attackVal);
 void spin(int attackVal);
-void trick(int attackVal, int healthVal);
+void trick(int & attackVal, int & healthVal);
 void leave(int attackVal, int healthVal, int expVal);
 
 int main(){
@@ -51,7 +51,7 @@ void greeting(){
 }
 void slice(int attackVal){
     if (attackVal >= 10){
-        cout << "Killed 1 slime, gained 1 exp." << endl;
+        cout << "Normo swung his sword and killed 1 slime, gained 1 exp." << endl;
         expVal++;
     }
     else{
@@ -61,20 +61,25 @@ void slice(int attackVal){
     return;
 }
 void spin(int attackVal){
-    if (attackVal < 10){
+    if (attackVal < 15){
         cout << "Your attack was too low. You lost 10 health" << endl;
         healthVal -= 10;
     }
+    else{
+        cout << "Normo closes his eyes and spins in a circle with his sword out! As he opens his eyes, he sees 10 slime puddles. Success...? Gained 10 exp!" << endl;
+        expVal += 10;
+    }
     return;
 }
-void trick(int attackVal, int healthVal){
-    int temp;
-    attackVal = temp;
-    healthVal = attackVal;
+void trick(int & attackVal, int & healthVal){
+    cout << "Attack is now " << healthVal << ", Health is now " << attackVal << endl;
+    int temp = attackVal;
+    attackVal = healthVal;
     healthVal = temp;
     return;
 }
 void leave(int attackVal, int healthVal, int expVal){
     cout << "Normo:" << endl << "Attack - " << attackVal << endl << "Health - " << healthVal << endl << "Exp - " << expVal;
+    exit;
     return;
 }
